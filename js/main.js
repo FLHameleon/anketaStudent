@@ -54,7 +54,9 @@ $buttonPower.addEventListener('click', () => {
         $experienceWork: document.getElementById('experienceWorkUser').checked,
         $sizeMoney: document.getElementById("sizeMoneyUser").value,
         $nameMail: document.getElementById('nameMailUser').value,
-        $mailUser: document.getElementById('mailUser').value
+        $mailUser: document.getElementById('mailUser').value,
+        $password1: document.getElementById('passwordUser1').value,
+        $password2: document.getElementById('passwordUser2').value
 
 
 //mailUser
