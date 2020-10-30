@@ -1,0 +1,16 @@
+.textPoleRu {
+    clear:both; 
+    text-align:right;
+}
+
+.elemData {
+    float: right;
+}
+
+label {
+    float:left;
+}
+
+.anketList {
+    float:left
+}
