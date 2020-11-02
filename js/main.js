@@ -5,7 +5,9 @@ const $mainList = document.getElementById('anketData')
 const $obrazovanie = document.getElementById('obrazovanieUser')
 const $mailUser = document.getElementById('mailUser')
 const $buttonPower = document.getElementById('dataGo')
+const $dateBirthUser = document.getElementById('dateOfBirthUser')
 
+let provVozrasta = false
 let htmlByfer = ''
 
 
@@ -44,7 +46,16 @@ vidsMail.forEach((item) => {
 $mailUser.innerHTML = htmlByfer
 htmlByfer = ''
 
+
 $buttonPower.addEventListener('click', () => {
+
+    // if(testSoverhenoLetiy(document.getElementById('dateOfBirthUser').value)) {
+    //     console.log('big 18')
+    // } else {
+    //     console.log('little 18')
+    // }
+
+
 
     let dataUser = {
         $name: document.getElementById('nameUser').value,
@@ -56,8 +67,8 @@ $buttonPower.addEventListener('click', () => {
         $obrazovanie: document.getElementById('obrazovanieUser').value,
         $experienceWork: document.getElementById('experienceWorkUser').checked,
         $sizeMoney: document.getElementById("sizeMoneyUser").value,
-        $nameMail: document.getElementById('nameMailUser').value,
-        $mailUser: document.getElementById('mailUser').value,
+        $nameUserMail: document.getElementById('nameMailUser').value + document.getElementById('mailUser').value,
+        //$mailUser: document.getElementById('mailUser').value,
         $password1: document.getElementById('passwordUser1').value,
         $password2: document.getElementById('passwordUser2').value
 
@@ -94,6 +105,21 @@ inputs.forEach((item) => {
     myCheckList.set(item.id, false)
 })
 
+
+$dateBirthUser.addEventListener('blur', () => {
+    //console.log('dateBlur')
+    if(testSoverhenoLetiy($dateBirthUser.value)) {
+        $dateBirthUser.setAttribute('style', "color: green")
+        provVozrasta = true
+        //console.log('big 18')
+    } else {
+        $dateBirthUser.setAttribute('style', "color: red")
+        $buttonPower.disabled = true;
+        provVozrasta = false
+        //console.log('little 18')
+    }
+    //this.classList.remove('invalid');
+})
 
 for (let input of inputs) {
     input.oninput = function() {
@@ -163,10 +189,30 @@ for (let input of inputs) {
         //console.log(document.getElementById('nameMailUser').value)
         //nameMailUser
 
-        if (check) {
+        if (check && provVozrasta) {
            $buttonPower.disabled = false;
         } else {
             $buttonPower.disabled = true;
         }
     };
+}
+
+
+function testSoverhenoLetiy(dateBirthDay) {
+
+    let myDate = new Date()
+
+    let arrBirth = dateBirthDay.split('-')
+    let toYear = myDate.getFullYear()
+    let toMouns = myDate.getMonth()
+    let toDay = myDate.getDate()
+
+    console.log(arrBirth[0])
+    console.log(toYear)
+
+    if((toYear - arrBirth[0]) < 18) {
+        return false;
+    }
+
+    return true
 }
