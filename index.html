@@ -10,81 +10,82 @@
 <body>
 
 <h1>Анкетные данные</h1>
-        
+
+
 <div id="anketData" class="anketList">
 
-    <div class="textPoleRu">
-        <label>Имя:</label>
-        <input id = "nameUser" type="text" value="" />
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Фамилия: </label>
-        <input id = "surnameUser" type="text" value="" />
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Отчество:</label>
-        <input id = "patronymicUser" type="text" value="" />
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Пол:</label>
-        <div class="elemData">
-            <label>Мужской:<input name="polUser" type="radio" value="Men"/></label>
-            <label>Женский:<input name="polUser" type="radio" value="Women"/></label>
+    <form name="form">
+        <div class="textPoleRu">
+            <label>Имя:</label>
+            <input data-rule="textRu" id = "nameUser" type="text" value="" />
         </div>
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Телефон:</label>
-        <input type="tel" id="telUser" placeholder="Введите ваш телефон">
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Дата рождения(календарь):</label>
-        <input type="date" id="dateOfBirthUser" value="2018-07-05" min="1990-01-01" max="2020-09-01" />
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Образование:</label>
-        <select id="obrazovanieUser"></select>
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Имеется ли опыт работы более года:</label>
-        <input id = 'experienceWorkUser' type="checkbox" />
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Ожидаемая зароботная плата:
-        <input type="range" min="10000" max="50000" step="100" id="sizeMoneyUser" oninput="sizePic()" value="3"/></label>
-        <label id = 'testRange'>25000</label>
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Электронная почта:
-        <input type="text" id="nameMailUser" value="" /></label>
-        <select id = "mailUser"></select>
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Пароль:</label>
-        <input id = 'passwordUser1' type="password" value="" />
-    </div>
-    
-    <div class="textPoleRu">
-        <label>Повтор пароля:</label>
-        <input id = 'passwordUser2' type="password" value="" />
-    </div>
-    
-    <div class="textPoleRu">
-        <button id = "dataGo">Отправить</button>
-    </div>
+        
+        <div class="textPoleRu">
+            <label>Фамилия: </label>
+            <input data-rule="textRu" id = "surnameUser" type="text" value="" />
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Отчество:</label>
+            <input data-rule="textRu" id = "patronymicUser" type="text" value="" />
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Пол:</label>
+            <div class="elemData">
+                <label>Мужской:<input name="polUser" type="radio" value="Men" checked/></label>
+                <label>Женский:<input name="polUser" type="radio" value="Women"/></label>
+            </div>
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Телефон:</label>
+            <input type="tel" id="telUser" placeholder="Введите ваш телефон" />
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Дата рождения(календарь):</label>
+            <input type="date" id="dateOfBirthUser" value="2018-07-05" min="1990-01-01" max="2020-09-01" />
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Образование:</label>
+            <select id="obrazovanieUser"></select>
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Имеется ли опыт работы более года:</label>
+            <input id = 'experienceWorkUser' type="checkbox" />
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Ожидаемая зароботная плата:
+            <input type="range" min="10000" max="50000" step="100" id="sizeMoneyUser" oninput="sizePic()" value="3"/></label>
+            <label id = 'testRange'>10000</label>
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Электронная почта:
+            <input data-rule="textRuOrEng" type="text" id="nameMailUser" value="" /></label>
+            <select id = "mailUser"></select>
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Пароль:</label>
+            <input data-rule="myParol1" id = 'passwordUser1' type="password" value="" />
+        </div>
+        
+        <div class="textPoleRu">
+            <label>Повтор пароля:</label>
+            <input data-rule="myParol2" id = 'passwordUser2' type="password" value="" />
+        </div>
+    </form>
+        
+        <div class="textPoleRu">
+            <button data-rule="myParol2" id = "dataGo" disabled>Отправить</button>
+        </div>
 </div>
 
-    <script type="text/javascript">
-    </script>
 
     <script src="js/main.js"></script>
 </body>

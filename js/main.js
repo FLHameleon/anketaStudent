@@ -1,3 +1,6 @@
+document.forms['form'].reset()
+//document.console
+
 const $mainList = document.getElementById('anketData')
 const $obrazovanie = document.getElementById('obrazovanieUser')
 const $mailUser = document.getElementById('mailUser')
@@ -62,20 +65,8 @@ $buttonPower.addEventListener('click', () => {
 //mailUser
 //nameMailUser
     }
-
     console.log(dataUser)
 })
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -90,3 +81,92 @@ const sizePic = () => {
 jQuery(($) => {
     $("#telUser").mask("+38(071) 999-9999");
     });
+
+
+    
+//valideyshen
+
+let inputs = document.querySelectorAll('input[data-rule]');
+let myCheckList = new Map()
+
+
+inputs.forEach((item) => {
+    myCheckList.set(item.id, false)
+})
+
+
+for (let input of inputs) {
+    input.oninput = function() {
+        
+        let rule = this.dataset.rule;
+        let myProvId = this.id;
+        let myValue = this.value
+        let check = false;
+
+
+        switch(rule) {
+        case 'textRu': {
+                //check = /^\d+$/.test(myValue);
+                check = /^([А-Я]|[а-я])+$/.test(myValue);
+                break;
+            }
+        case 'textRuOrEng': {
+            check = /^([А-Я]|[а-я]|[A-Z]|[a-z]|[0-9])+$/.test(myValue);
+            break;
+            }
+        }
+        //console.log(check)
+        
+
+        this.classList.remove('invalid');
+        this.classList.remove('valid');
+
+        if (check) {
+            myCheckList.set(myProvId, true)
+            this.classList.add('valid');
+        } else {
+            myCheckList.set(myProvId, false)
+            this.classList.add('invalid')
+        }
+
+
+
+        if (rule == 'myParol1' || rule == 'myParol2') {
+            //console.log(document.getElementById('passwordUser2').value)
+
+        document.getElementById('passwordUser1').classList.remove('invalid');
+        document.getElementById('passwordUser1').classList.remove('valid');
+        document.getElementById('passwordUser2').classList.remove('invalid');
+        document.getElementById('passwordUser2').classList.remove('valid');
+
+
+            if(document.getElementById('passwordUser1').value == document.getElementById('passwordUser2').value) {
+                myCheckList.set('passwordUser1', true)
+                myCheckList.set('passwordUser2', true)
+                document.getElementById('passwordUser1').classList.add('valid') 
+                document.getElementById('passwordUser2').classList.add('valid')
+            } else {
+                myCheckList.set('passwordUser1', false)
+                myCheckList.set('passwordUser2', false)
+                document.getElementById('passwordUser1').classList.add('invalid') 
+                document.getElementById('passwordUser2').classList.add('invalid')
+            }
+        }
+        
+
+        check = true
+        myCheckList.forEach(function(value, key) {
+            if(!value) check = false
+          });
+
+        //console.log(document.getElementById('telUser').value)
+        //console.log(document.getElementById('nameMailUser').value)
+        //nameMailUser
+
+        if (check) {
+           $buttonPower.disabled = false;
+        } else {
+            $buttonPower.disabled = true;
+        }
+    };
+}

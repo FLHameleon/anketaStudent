@@ -14,3 +14,11 @@ label {
 .anketList {
     float:left
 }
+
+.valid {
+    color: green
+}
+
+.invalid {
+    color: red
+}
