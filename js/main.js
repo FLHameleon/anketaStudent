@@ -2,10 +2,13 @@ document.forms['form'].reset()
 //document.console
 
 const $mainList = document.getElementById('anketData')
-const $obrazovanie = document.getElementById('obrazovanieUser')
-const $mailUser = document.getElementById('mailUser')
 const $buttonPower = document.getElementById('dataGo')
 const $dateBirthUser = document.getElementById('dateOfBirthUser')
+
+
+const $obrazovanie = document.getElementById('obrazovanieUser')
+const $mailUser = document.getElementById('mailUser')
+const $kodCityUser = document.getElementById('telCodeUser')
 
 let provVozrasta = false
 let htmlByfer = ''
@@ -30,6 +33,13 @@ const vidsMail = [
     'Other'
 ]
 
+const kodCity = [
+    '+38(071)',
+    '+38(066)',
+    '+7(044)',
+    '+7(165)'
+]
+
 
 
 vidsObrazov.forEach((item) => {
@@ -46,6 +56,15 @@ vidsMail.forEach((item) => {
 $mailUser.innerHTML = htmlByfer
 htmlByfer = ''
 
+kodCity.forEach((item) => {
+    htmlByfer += `<option value="${item}">${item}</option>`
+})
+
+$kodCityUser.innerHTML = htmlByfer
+htmlByfer = ''
+
+
+////////////////////////////////////////////////////////
 
 $buttonPower.addEventListener('click', () => {
 
@@ -53,8 +72,8 @@ $buttonPower.addEventListener('click', () => {
         $name: document.getElementById('nameUser').value,
         $surname: document.getElementById('surnameUser').value,
         $patronymic: document.getElementById('patronymicUser').value,
-        $Pol: $("input[name=polUser]:checked").val(),
-        $telephon: document.getElementById('telUser').value,
+        $pol: document.querySelector("input[name=polUser]:checked").value,
+        $telephon: document.getElementById('telCodeUser').value + document.getElementById('telUser').value,
         $dateOfBirth: document.getElementById('dateOfBirthUser').value,
         $obrazovanie: document.getElementById('obrazovanieUser').value,
         $experienceWork: document.getElementById('experienceWorkUser').checked,
@@ -66,20 +85,12 @@ $buttonPower.addEventListener('click', () => {
     console.log(dataUser)
 })
 
-
-
 const sizePic = () => {
     let size = document.getElementById("sizeMoneyUser").value;
     let testDiv = document.getElementById('testRange')
 
     testDiv.innerHTML = size
    }
-
-
-jQuery(($) => {
-    $("#telUser").mask("+38(071) 999-9999");
-    });
-
 
     
 //valideyshen
@@ -94,18 +105,16 @@ inputs.forEach((item) => {
 
 
 $dateBirthUser.addEventListener('blur', () => {
+//$dateBirthUser.oninput = function() {
     //console.log('dateBlur')
     if(testSoverhenoLetiy($dateBirthUser.value)) {
         $dateBirthUser.setAttribute('style', "color: green")
         provVozrasta = true
-        //console.log('big 18')
     } else {
         $dateBirthUser.setAttribute('style', "color: red")
         $buttonPower.disabled = true;
         provVozrasta = false
-        //console.log('little 18')
     }
-    //this.classList.remove('invalid');
 })
 
 for (let input of inputs) {
@@ -118,18 +127,22 @@ for (let input of inputs) {
 
 
         switch(rule) {
-        case 'textRu': {
+            case 'textRu': {
                 //check = /^\d+$/.test(myValue);
                 check = /^[А-Я][а-я]+$/.test(myValue);
                 break;
             }
-        case 'textRuOrEng': {
-            check = /^([А-Я]|[а-я]|[A-Z]|[a-z]|[0-9]){5,}$/.test(myValue);
-            break;
+            case 'textRuOrEng': {
+                check = /^([А-Я]|[а-я]|[A-Z]|[a-z]|[0-9]){5,}$/.test(myValue);
+                break;
             }
-        case 'textParol': {
-            check = /^([А-Я]|[а-я]|[A-Z]|[a-z]|[0-9]){8,}$/.test(myValue);
-            break;
+            case 'textParol': {
+                check = /^([А-Я]|[а-я]|[A-Z]|[a-z]|[0-9]){8,}$/.test(myValue);
+                break;
+            }
+            case 'textTelNomer': {
+                check = /^[0-9]{7,10}$/.test(myValue)
+                break;
             }
         }
         //console.log(check)

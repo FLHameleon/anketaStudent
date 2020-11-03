@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Анкетные данные</title>
     <link rel="stylesheet" href="css/main.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="js/maskinput.js"></script>
 </head>
 <body>
 
@@ -40,12 +38,13 @@
         
         <div class="textPoleRu">
             <label>Телефон:</label>
-            <input type="tel" id="telUser" placeholder="Введите ваш телефон" />
+            <select id = "telCodeUser"></select>
+            <input data-rule="textTelNomer" type="tel" id="telUser" />
         </div>
         
         <div class="textPoleRu">
             <label>Дата рождения(календарь):</label>
-            <input type="date" style="color: black" id="dateOfBirthUser" value="2018-07-05" min="1990-01-01" max="2020-09-01" />
+            <input type="date" style="color: black" id="dateOfBirthUser" value="1988-07-05" min="1970-01-01" max="2020-09-01" />
         </div>
         
         <div class="textPoleRu">
