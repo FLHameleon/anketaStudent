@@ -49,14 +49,6 @@ htmlByfer = ''
 
 $buttonPower.addEventListener('click', () => {
 
-    // if(testSoverhenoLetiy(document.getElementById('dateOfBirthUser').value)) {
-    //     console.log('big 18')
-    // } else {
-    //     console.log('little 18')
-    // }
-
-
-
     let dataUser = {
         $name: document.getElementById('nameUser').value,
         $surname: document.getElementById('surnameUser').value,
@@ -68,13 +60,8 @@ $buttonPower.addEventListener('click', () => {
         $experienceWork: document.getElementById('experienceWorkUser').checked,
         $sizeMoney: document.getElementById("sizeMoneyUser").value,
         $nameUserMail: document.getElementById('nameMailUser').value + document.getElementById('mailUser').value,
-        //$mailUser: document.getElementById('mailUser').value,
         $password1: document.getElementById('passwordUser1').value,
         $password2: document.getElementById('passwordUser2').value
-
-
-//mailUser
-//nameMailUser
     }
     console.log(dataUser)
 })
@@ -133,11 +120,15 @@ for (let input of inputs) {
         switch(rule) {
         case 'textRu': {
                 //check = /^\d+$/.test(myValue);
-                check = /^([А-Я]|[а-я])+$/.test(myValue);
+                check = /^[А-Я][а-я]+$/.test(myValue);
                 break;
             }
         case 'textRuOrEng': {
-            check = /^([А-Я]|[а-я]|[A-Z]|[a-z]|[0-9])+$/.test(myValue);
+            check = /^([А-Я]|[а-я]|[A-Z]|[a-z]|[0-9]){5,}$/.test(myValue);
+            break;
+            }
+        case 'textParol': {
+            check = /^([А-Я]|[а-я]|[A-Z]|[a-z]|[0-9]){8,}$/.test(myValue);
             break;
             }
         }
@@ -157,7 +148,7 @@ for (let input of inputs) {
 
 
 
-        if (rule == 'myParol1' || rule == 'myParol2') {
+        if (rule == 'textParol' && check) {
             //console.log(document.getElementById('passwordUser2').value)
 
         document.getElementById('passwordUser1').classList.remove('invalid');
